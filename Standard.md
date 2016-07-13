@@ -3,31 +3,22 @@
 #一、html规范#
 1. * 文件开始推荐使用“<!DOCTYPE html>”
 2. * meta注明**utf-8**编码
-3. * meta的**keywords、description**都是需要声明的，为了SEO
-4. 常用移动端meta及常用meta解释      
-
-        <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="format-detection" content="email=no" />
-        <meta name="format-detection" content="address=no;">
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
-
+3. * meta的**keywords、description**都是需要声明的
 1. 原则上只引入一个css文件，且在head里面
 2. dns预解析：对于多次访问的域名可以使用，初次会增加dns的解析时间 
   
-        `<link href="//j1.58cdn.com.cn" rel="dns-prefetch">`
+        <link href="//j1.58cdn.com.cn" rel="dns-prefetch">
 
 3. ***遵循HTML标准和语义化**，确保代码可读性：
   - 可读性要求在没有css的情况下，页面可读（按照从上至下、从左到右的视觉顺序书写HTML结构）
   - 非表格不建议使用table布局
-  - ***闭合标签必须闭合，单元素标签必须以加“/”，标签嵌套规则**
+  - 禁止为了 hook 脚本，创建无样式信息的 class，操作js请用id
+  - 属性值必须用双引号包围
+  - ***闭合标签必须闭合，非闭合标签禁制闭合，标签嵌套规则**
   - id具有唯一标识（慎用） class高度可复用
-  - img 的alt、title原则上需要加
   - 尽量避免多余的父节点，减少迭代（并不是说不可以迭代，请区分，避免迭代的原因是保持html的健壮性，减少html文件的大小，**dom节点的增加与性能成负相关关系**）
 
-            `<span><img src="" /></span>  推荐使用：<img src="" />`
+            <span><img src="" /></span>  推荐使用：<img src="" />
 
   - 前端存储、获取、操作dom节点时使用数据**统一使用data-attribute**且**小写**，禁制为dom节点添加非data-xxx以为的其他属性
 
@@ -46,8 +37,9 @@
          结束注释：<!-- /注释文案 -->`
 1. 某些情况下需要写HTML字符实体：
   
-        `以空格为例 建议使用&nbsp;`  原因是某些情况下字符可能会有问题
-1. 标签建议使用小写
+        以空格为例 建议使用&nbsp;  原因是某些情况下字符可能会有问题
+1. **标签使用小写**
+2. **缩进**：采用4个空格为一次缩进，不得采用TAB缩进
 
 
 #二、css规范 #
@@ -107,10 +99,10 @@ Style Computation计算顺序
     - 前缀顺序  -webkit-border,border标准写后面（如果使用 Autoprefixer自动添加浏览器厂商前缀，请忽略此条）
 1. 鼓励使用缩写，但是不强求
 2. 向下兼容的写法谨慎书写及慎用 如！important，filter。禁用通配符*，expression（ie6除外，但慎用），小图片慎用repeat
-3. 
+3. 对于文本设置时，必须加line-height
 
 # **LESS、SASS规范（模块化规范）** #
-1. 禁制多级嵌套，建议使用2级嵌套
+1. 禁制多级嵌套，推荐使用2-3级嵌套，4级不推荐，禁制使用4级以上
 2. import引入less/sass文件时，文件格式（.less）不能省略
 
 # **CSS优化** #
@@ -183,8 +175,6 @@ Style Computation计算顺序
 - 版权：copyright
 
 #三、js规范 #
-
-**说明**：本规范仅适用使用现有开发方式，不适用以VUE，react开发。
 
 **命名**：采用驼峰命名法（原则简短明了），构造函数以大写字母开头，不强行推荐私有变量“_name”命名
 
